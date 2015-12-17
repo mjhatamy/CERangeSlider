@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CERangeSlider.h"
+
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet CERangeSlider *slider;
 
 @end
 

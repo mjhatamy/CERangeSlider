@@ -13,6 +13,13 @@
 		C31E2E231C21E5DC0043D593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31E2E211C21E5DC0043D593 /* Main.storyboard */; };
 		C31E2E251C21E5DC0043D593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C31E2E241C21E5DC0043D593 /* Assets.xcassets */; };
 		C31E2E281C21E5DC0043D593 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31E2E261C21E5DC0043D593 /* LaunchScreen.storyboard */; };
+		C31E2E311C21E7020043D593 /* CERangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = C31E2E301C21E7020043D593 /* CERangeSlider.m */; };
+		C31E2E331C21ECAB0043D593 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C31E2E321C21ECAB0043D593 /* QuartzCore.framework */; };
+		C31E2E361C21F2AA0043D593 /* CERangeSliderKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C31E2E351C21F2AA0043D593 /* CERangeSliderKnobLayer.m */; };
+		C31E2E5F1C2201280043D593 /* CERangeSliderTrackLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C31E2E5E1C2201280043D593 /* CERangeSliderTrackLayer.m */; };
+		C31E2E6A1C2272FC0043D593 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C31E2E691C2272FC0043D593 /* UIKit.framework */; };
+		C31E2E6D1C2273720043D593 /* TextFieldEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C31E2E6C1C2273720043D593 /* TextFieldEffects.m */; };
+		C31E2E731C22B0130043D593 /* JiraTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C31E2E721C22B0130043D593 /* JiraTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,18 @@
 		C31E2E241C21E5DC0043D593 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C31E2E271C21E5DC0043D593 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C31E2E291C21E5DC0043D593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C31E2E2F1C21E7020043D593 /* CERangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CERangeSlider.h; sourceTree = SOURCE_ROOT; };
+		C31E2E301C21E7020043D593 /* CERangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CERangeSlider.m; sourceTree = SOURCE_ROOT; };
+		C31E2E321C21ECAB0043D593 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C31E2E341C21F2AA0043D593 /* CERangeSliderKnobLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CERangeSliderKnobLayer.h; sourceTree = "<group>"; };
+		C31E2E351C21F2AA0043D593 /* CERangeSliderKnobLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CERangeSliderKnobLayer.m; sourceTree = "<group>"; };
+		C31E2E5D1C2201280043D593 /* CERangeSliderTrackLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CERangeSliderTrackLayer.h; sourceTree = "<group>"; };
+		C31E2E5E1C2201280043D593 /* CERangeSliderTrackLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CERangeSliderTrackLayer.m; sourceTree = "<group>"; };
+		C31E2E691C2272FC0043D593 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C31E2E6B1C2273720043D593 /* TextFieldEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEffects.h; sourceTree = "<group>"; };
+		C31E2E6C1C2273720043D593 /* TextFieldEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEffects.m; sourceTree = "<group>"; };
+		C31E2E711C22B0130043D593 /* JiraTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiraTextField.h; sourceTree = "<group>"; };
+		C31E2E721C22B0130043D593 /* JiraTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiraTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C31E2E6A1C2272FC0043D593 /* UIKit.framework in Frameworks */,
+				C31E2E331C21ECAB0043D593 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +63,8 @@
 		C31E2E0C1C21E5DC0043D593 = {
 			isa = PBXGroup;
 			children = (
+				C31E2E691C2272FC0043D593 /* UIKit.framework */,
+				C31E2E321C21ECAB0043D593 /* QuartzCore.framework */,
 				C31E2E171C21E5DC0043D593 /* CERangeSlider */,
 				C31E2E161C21E5DC0043D593 /* Products */,
 			);
@@ -58,6 +81,10 @@
 		C31E2E171C21E5DC0043D593 /* CERangeSlider */ = {
 			isa = PBXGroup;
 			children = (
+				C31E2E2F1C21E7020043D593 /* CERangeSlider.h */,
+				C31E2E301C21E7020043D593 /* CERangeSlider.m */,
+				C31E2E341C21F2AA0043D593 /* CERangeSliderKnobLayer.h */,
+				C31E2E351C21F2AA0043D593 /* CERangeSliderKnobLayer.m */,
 				C31E2E1B1C21E5DC0043D593 /* AppDelegate.h */,
 				C31E2E1C1C21E5DC0043D593 /* AppDelegate.m */,
 				C31E2E1E1C21E5DC0043D593 /* ViewController.h */,
@@ -67,6 +94,12 @@
 				C31E2E261C21E5DC0043D593 /* LaunchScreen.storyboard */,
 				C31E2E291C21E5DC0043D593 /* Info.plist */,
 				C31E2E181C21E5DC0043D593 /* Supporting Files */,
+				C31E2E5D1C2201280043D593 /* CERangeSliderTrackLayer.h */,
+				C31E2E5E1C2201280043D593 /* CERangeSliderTrackLayer.m */,
+				C31E2E6B1C2273720043D593 /* TextFieldEffects.h */,
+				C31E2E6C1C2273720043D593 /* TextFieldEffects.m */,
+				C31E2E711C22B0130043D593 /* JiraTextField.h */,
+				C31E2E721C22B0130043D593 /* JiraTextField.m */,
 			);
 			path = CERangeSlider;
 			sourceTree = "<group>";
@@ -150,8 +183,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C31E2E201C21E5DC0043D593 /* ViewController.m in Sources */,
+				C31E2E731C22B0130043D593 /* JiraTextField.m in Sources */,
 				C31E2E1D1C21E5DC0043D593 /* AppDelegate.m in Sources */,
+				C31E2E5F1C2201280043D593 /* CERangeSliderTrackLayer.m in Sources */,
+				C31E2E361C21F2AA0043D593 /* CERangeSliderKnobLayer.m in Sources */,
+				C31E2E311C21E7020043D593 /* CERangeSlider.m in Sources */,
 				C31E2E1A1C21E5DC0043D593 /* main.m in Sources */,
+				C31E2E6D1C2273720043D593 /* TextFieldEffects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,8 +299,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = CERangeSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mygix.CERangeSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -272,8 +316,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = CERangeSlider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mygix.CERangeSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -298,6 +348,7 @@
 				C31E2E2E1C21E5DD0043D593 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
