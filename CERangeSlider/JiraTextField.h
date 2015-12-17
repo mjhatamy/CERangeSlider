@@ -8,6 +8,7 @@
 
 #import "TextFieldEffects.h"
 
+IB_DESIGNABLE
 @interface JiraTextField : TextFieldEffects
 
 @property (nonatomic) IBInspectable CGFloat borderThickness;
@@ -15,7 +16,7 @@
 @property (nonatomic) IBInspectable UIColor* borderColor;
 @property (nonatomic) IBInspectable UIColor* placeholderColor;
 
--(void) animateViewForTextEntry;
+-(void) animateViewsForTextEntry;
 -(void) animateViewsForTextDisplay;
 
 @end

@@ -12,7 +12,21 @@
  
     
 }
-@synthesize text = _text;
+
+@dynamic text;
+
+/*
+-(void) setText:(NSString *)text{
+    self.text = text;
+    NSLog(@"Set Text");
+    //super.text = text;
+    if(text==self.text && (text.length >0)){
+        [self animateViewsForTextEntry];
+    }else{
+        [self animateViewsForTextDisplay];
+    }
+}
+ */
 
 -(void) animateViewsForTextEntry {
      NSLog(@"Supper view animateViewsForTextEntry");
@@ -21,16 +35,7 @@
     NSLog(@"Supper view animateViewsForTextDisplay");
 }
 
--(void) setText:(NSString *)text{
-    NSLog(@"Set Text");
-    _text = text;
-    if(text==self.text && (text.length >0)){
-        [self animateViewsForTextEntry];
-    }else{
-        [self animateViewsForTextDisplay];
-    }
 
-}
 
 -(void) updateViewsForBoundsChange:(CGRect) bounds
 {
@@ -63,7 +68,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidEndEditing) name:
          UITextFieldTextDidEndEditingNotification object:self];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidBeginEditing:) name:
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidBeginEditing) name:
          UITextFieldTextDidBeginEditingNotification object:self];
     }else{
         [[NSNotificationCenter defaultCenter] removeObserver:self];

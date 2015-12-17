@@ -9,13 +9,11 @@
 #import "JiraTextField.h"
 
 
-IB_DESIGNABLE
 @implementation JiraTextField {
     CGPoint placeholderInsets;
     CGPoint textFieldInsets;
     CALayer *borderLayer;
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -24,6 +22,14 @@ IB_DESIGNABLE
     // Drawing code
 }
 */
+
+-(void) observeValueForKeyPath:(NSString*)keyPath
+                      ofObject:(id)observee
+                        change:(NSDictionary*)change
+                       context:(void*)context
+{
+    // here's where the magic happens
+}
 
 -(void) setBorderColor:(UIColor *)borderColor{
     _borderColor = borderColor;
@@ -41,15 +47,16 @@ IB_DESIGNABLE
 }
 
 -(void) setPlaceholder:(NSString *)placeholder{
-    self.placeholder = placeholder;
+    super.placeholder = placeholder;
     [self updatePlaceHolder];
 }
 
 -(void) setBounds:(CGRect)bounds{
-    self.bounds = bounds;
+    super.bounds = bounds;
     [self updateBorder];
     [self updatePlaceHolder];
 }
+
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -63,13 +70,15 @@ IB_DESIGNABLE
 
 -(void) setDefaultValues{
     NSLog(@"setDefaultValues");
-    placeHolderLabel = [[UILabel alloc] init];
+    placeHolderLabel = [UILabel new];
     _borderThickness = 2.0;
     //_placeholderFontScale = 0.65;
     //_placeholderColor = [UIColor blackColor];
     placeholderInsets = CGPointMake(8, 8);
     textFieldInsets  = CGPointMake(8, 12);
     borderLayer = [CALayer layer];
+    
+    
 }
 
 -(void) drawViewsForRect:(CGRect) rect{
@@ -98,7 +107,7 @@ IB_DESIGNABLE
     [self layoutPlaceholderInTextRect];
     
     if(self.isFirstResponder || !(self.text.length > 0) ){
-        [self animateViewForTextEntry];
+        [self animateViewsForTextEntry];
     }
 }
 
@@ -139,11 +148,11 @@ IB_DESIGNABLE
     return smallerFont;
 }
 
--(void) animateViewForTextEntry
+-(void) animateViewsForTextEntry
 {
     NSLog(@"ChildView animateViewForTextEntry");
     CGRect frame =  borderLayer.frame;
-    frame.origin = CGPointMake(0, self.font.lineHeight);
+    frame.origin = CGPointMake(0, super.font.lineHeight);
     borderLayer.frame = frame;
     
     [UIView animateWithDuration:0.2 delay:0.3 usingSpringWithDamping:0.8 initialSpringVelocity:1.0 options:UIViewAnimationOptionBeginFromCurrentState  animations:^(void){
