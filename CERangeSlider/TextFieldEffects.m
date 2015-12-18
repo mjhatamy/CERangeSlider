@@ -1,14 +1,9 @@
 //
-//  TextFieldEffects.m
-//  CERangeSlider
-//
 //  Created by Majid Hatami Aghdam on 12/16/15.
 //  Copyright © 2015 Majid Hatami Aghdam. All rights reserved.
 //
 
 #import "TextFieldEffects.h"
-
-static void* const MyKVOContext = (void *)&MyKVOContext;
 
 @implementation TextFieldEffects {
  
@@ -18,21 +13,6 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 @dynamic placeholder;
 @dynamic text;
 @dynamic textColor;
-
-
-
-/*
--(void) setText:(NSString *)text{
-    //self.text = text;
-    NSLog(@"Set Text");
-    super.text = text;
-    if(text==self.text && (text.length >0)){
-        [self animateViewsForTextEntry];
-    }else{
-        [self animateViewsForTextDisplay];
-    }
-}
- */
  
 
 -(void) animateViewsForTextEntry {
@@ -51,35 +31,6 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
     // Don't draw any placeholders
 }
 
-
--(void) setupKVO{
-    NSLog(@"Setup KVO called");
-    [self.userActivity addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:MyKVOContext];
-}
-
--(void) removeKVO{
-    NSLog(@"Remove KVO Called");
-    [self.userActivity removeObserver:self forKeyPath:@"text" context:MyKVOContext];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object change:(NSDictionary *)change
-                       context:(void *)context
-{
-    NSLog(@"Observer root");
-    if ( context == MyKVOContext ) {
-        if ( [object isEqual:self] ) {
-            NSLog(@"Observer called here");
-        }
-    }
-}
-
--(void) dealloc{
-    [self removeKVO];
-}
-
-
-
 /**
  Draws the receiver’s image within the passed-in rectangle.
  - parameter rect:	The portion of the view’s bounds that needs to be updated.
@@ -92,8 +43,6 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 -(void) drawRect:(CGRect)rect
 {
     NSLog(@"Super drawRect called");
-    [self setupKVO];
-    
     [self drawViewsForRect: rect];
     [self animateViewsForTextDisplay];
 }
@@ -124,6 +73,8 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 }
 
 -(void) prepareForInterfaceBuilder{
+    [super prepareForInterfaceBuilder];
+    NSLog(@"prepareForInterfaceBuilder----");
     [self drawViewsForRect:self.frame ];
 }
 

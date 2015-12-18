@@ -11,7 +11,17 @@
 @implementation YoshikoTextField
 
 
-
+-(void) setDefaultValues{
+    NSLog(@"setDefaultValues");
+    placeHolderLabel = [UILabel new];
+    placeHolderLabel.text = @"----";
+    //_borderThickness = 2.0;
+    _placeholderFontScale = 0.7;
+    //_placeholderColor = [UIColor blackColor];
+    placeholderInsets = CGPointMake(6, 0);
+    textFieldInsets  = CGPointMake(6, 0);
+    borderLayer = [CALayer layer];
+}
 
 -(void)updateBorder {
     borderLayer.frame = [self rectForBounds:self.bounds];
@@ -43,6 +53,7 @@
     }
 }
 
+
 -(UIFont *)placeholderFontFromFontAndPercentageOfOriginalSize: (UIFont*)font percentageOfOriginalSize:(CGFloat)percentageOfOriginalSize
 {
     return [UIFont fontWithName:font.fontName size:font.pointSize * percentageOfOriginalSize];
@@ -60,39 +71,65 @@
 
 -(void)animateViews {
     [UIView animateWithDuration:0.2 animations:^(void){
-        placeHolderLabel.alpha = 0;
+        placeHolderLabel.alpha = (self.text > 0) ? 1:0;
         placeHolderLabel.frame = [self placeholderRectForBounds:self.bounds];
     }  completion:^(BOOL finished){
-        placeHolderLabel.alpha = 1;
-        [self updateBorder];
-        [self updateBackground];
+        [self updatePlaceholder];
+        [UIView animateWithDuration:0.3 animations:^(void){
+            placeHolderLabel.alpha = 1;
+            [self updateBorder];
+            [self updateBackground];
+        }];
     }];
 }
 
 // MARK: - TextFieldEffects
-
 -(void)animateViewsForTextEntry {
-    //guard text!.isEmpty else { return }
-    
+    NSLog(@"animateViewsForTextEntry child");
     [self animateViews];
 }
 
 -(void)animateViewsForTextDisplay {
-    //guard text!.isEmpty else { return }
-    
+    NSLog(@"animateViewsForTextDisplay child");
     [self animateViews];
 }
 
-
 -(void)drawViewsForRect:(CGRect)rect
 {
+    NSLog(@"drawViewsForRect child");
+    [self setDefaultValues];
+    
     [self updatePlaceholder];
     [self updateBorder];
     [self updateBackground];
     
     [self.layer addSublayer:borderLayer];
     [self addSubview:placeHolderLabel];
-    
+}
+
+- (CGRect)placeholderRectForBounds:(CGRect)bounds
+{
+    if(self.isFirstResponder || (self.text.length > 0)){
+        return CGRectMake(placeholderInsets.x, placeholderInsets.y, bounds.size.width, [self placeholderHeight]);
+    }else{
+        return [self textRectForBounds:bounds];
+    }
+}
+
+- (CGRect)editingRectForBounds:(CGRect)bounds{
+    return [self textRectForBounds:bounds];
+}
+
+- (CGRect)textRectForBounds:(CGRect)bounds{
+    return CGRectOffset(bounds, textFieldInsets.x, textFieldInsets.y + [self placeholderHeight] /2 );
+}
+
+-(void)prepareForInterfaceBuilder{
+    [super prepareForInterfaceBuilder];
+    placeHolderLabel.alpha = 1;
+    //NSLog(@"Interface BNuilder");
+    [self setDefaultValues];
+    [self drawViewsForRect:self.frame ];
 }
 
 @end

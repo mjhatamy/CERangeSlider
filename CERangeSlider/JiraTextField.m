@@ -13,14 +13,6 @@
     
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 -(void) setBorderColor:(UIColor *)borderColor{
     _borderColor = borderColor;
     [self updateBorder];
@@ -48,13 +40,14 @@
 }
 
 
+
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    if(!self){
-        return nil;
+    if(self){
+        [self setDefaultValues];
     }
-    [self setDefaultValues];
     return self;
 }
 
@@ -71,9 +64,10 @@
 }
 
 -(void) drawViewsForRect:(CGRect) rect{
-    
-     NSLog(@"Child drawViewsForRect called ***-*  %f--%f   %f", placeholderInsets.x, placeholderInsets.y,
-           self.font.pointSize);
+    NSLog(@"Child drawViewsForRect called ***-*  %f--%f   %f  rect.width:%f   rect.height:%f", placeholderInsets.x, placeholderInsets.y, self.font.pointSize, rect.size.width, rect.size.height);
+    if( rect.size.height < MINIMUM_UI_HEIGHT){
+        rect.size.height = MINIMUM_UI_HEIGHT;
+    }
     CGRect frame = CGRectMake( 0, 0, rect.size.width, rect.size.height);
     placeHolderLabel.frame = CGRectInset(frame, placeholderInsets.x, placeholderInsets.y);
     placeHolderLabel.font = [self placeholderFontFromFont:self.font];
@@ -118,7 +112,6 @@
             originX += textRect.size.width - placeHolderLabel.bounds.size.width;
             break;
         default:
-            NSLog(@"NO Alignment");
             break;
     }
 
@@ -142,7 +135,7 @@
 
 -(void) animateViewsForTextEntry
 {
-    NSLog(@"ChildView animateViewForTextEntry");
+    //NSLog(@"ChildView animateViewForTextEntry");
     CGRect frame =  borderLayer.frame;
     frame.origin = CGPointMake(0, super.font.lineHeight);
     borderLayer.frame = frame;
@@ -159,13 +152,12 @@
 
 -(void) animateViewsForTextDisplay
 {
-    NSLog(@"animateViewsForTextDisplay child");
-        [UIView animateWithDuration:0.35 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:2.0 options:UIViewAnimationOptionBeginFromCurrentState  animations:^(void){
-            [self layoutPlaceholderInTextRect];
-            placeHolderLabel.alpha = 1;
-            
-        }  completion: nil];
-        borderLayer.frame = [self rectForBorder:_borderThickness isFilled:FALSE];
+    //NSLog(@"animateViewsForTextDisplay child");
+    [UIView animateWithDuration:0.35 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:2.0 options:UIViewAnimationOptionBeginFromCurrentState  animations:^(void){
+        [self layoutPlaceholderInTextRect];
+        placeHolderLabel.alpha = 1;
+    }  completion: nil];
+    borderLayer.frame = [self rectForBorder:_borderThickness isFilled:FALSE];
 }
 
 //OverRides
@@ -175,6 +167,13 @@
 
 -(CGRect) textRectForBounds:(CGRect) bounds{
     return CGRectOffset(bounds, textFieldInsets.x, textFieldInsets.y);
+}
+
+-(void)prepareForInterfaceBuilder{
+    [super prepareForInterfaceBuilder];
+    //NSLog(@"Interface BNuilder");
+    [self setDefaultValues];
+    [self drawViewsForRect:self.frame ];
 }
 
 

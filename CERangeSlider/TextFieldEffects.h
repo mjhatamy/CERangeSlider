@@ -1,7 +1,3 @@
-//
-//  TextFieldEffects.h
-//  CERangeSlider
-//
 //  Created by Majid Hatami Aghdam on 12/16/15.
 //  Copyright © 2015 Majid Hatami Aghdam. All rights reserved.
 //
@@ -12,6 +8,8 @@
 //! Project version number for TextFieldEffects.
 FOUNDATION_EXPORT double TextFieldEffectsVersionNumber;
 FOUNDATION_EXPORT const unsigned char TextFieldEffectsVersionString[];
+
+#define MINIMUM_UI_HEIGHT 46
 
 IB_DESIGNABLE
 @interface TextFieldEffects : UITextField{
