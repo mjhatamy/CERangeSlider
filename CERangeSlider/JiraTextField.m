@@ -10,9 +10,7 @@
 
 
 @implementation JiraTextField {
-    CGPoint placeholderInsets;
-    CGPoint textFieldInsets;
-    CALayer *borderLayer;
+    
 }
 
 /*
@@ -22,14 +20,6 @@
     // Drawing code
 }
 */
-
--(void) observeValueForKeyPath:(NSString*)keyPath
-                      ofObject:(id)observee
-                        change:(NSDictionary*)change
-                       context:(void*)context
-{
-    // here's where the magic happens
-}
 
 -(void) setBorderColor:(UIColor *)borderColor{
     _borderColor = borderColor;
@@ -52,7 +42,7 @@
 }
 
 -(void) setBounds:(CGRect)bounds{
-    super.bounds = bounds;
+    self.bounds = bounds;
     [self updateBorder];
     [self updatePlaceHolder];
 }
@@ -71,18 +61,19 @@
 -(void) setDefaultValues{
     NSLog(@"setDefaultValues");
     placeHolderLabel = [UILabel new];
+    placeHolderLabel.text = @"----";
     _borderThickness = 2.0;
-    //_placeholderFontScale = 0.65;
+    _placeholderFontScale = 0.65;
     //_placeholderColor = [UIColor blackColor];
     placeholderInsets = CGPointMake(8, 8);
     textFieldInsets  = CGPointMake(8, 12);
     borderLayer = [CALayer layer];
-    
-    
 }
 
 -(void) drawViewsForRect:(CGRect) rect{
-     NSLog(@"Child drawViewsForRect called !!!!!");
+    
+     NSLog(@"Child drawViewsForRect called ***-*  %f--%f   %f", placeholderInsets.x, placeholderInsets.y,
+           self.font.pointSize);
     CGRect frame = CGRectMake( 0, 0, rect.size.width, rect.size.height);
     placeHolderLabel.frame = CGRectInset(frame, placeholderInsets.x, placeholderInsets.y);
     placeHolderLabel.font = [self placeholderFontFromFont:self.font];
@@ -96,7 +87,7 @@
 
 -(void) updateBorder
 {
-    borderLayer.frame = [self rectForBorder:self.borderThickness isFilled:FALSE];
+    borderLayer.frame = [self rectForBorder:_borderThickness isFilled:FALSE];
     borderLayer.backgroundColor = _borderColor.CGColor;
 }
 
@@ -106,7 +97,7 @@
     [placeHolderLabel sizeToFit];
     [self layoutPlaceholderInTextRect];
     
-    if(self.isFirstResponder || !(self.text.length > 0) ){
+    if(self.isFirstResponder || (self.text.length > 0) ){
         [self animateViewsForTextEntry];
     }
 }
@@ -116,7 +107,8 @@
     if( (self.text.length > 0)){
         return;
     }
-    CGRect textRect = [self textRectForBounds:self.bounds];
+    
+    CGRect textRect = [self textRectForBounds:super.bounds];
     CGFloat originX = textRect.origin.x;
     switch (self.textAlignment) {
         case NSTextAlignmentCenter:
@@ -126,17 +118,18 @@
             originX += textRect.size.width - placeHolderLabel.bounds.size.width;
             break;
         default:
+            NSLog(@"NO Alignment");
             break;
     }
+
+    placeHolderLabel.frame = CGRectMake(originX, textRect.size.height/2, placeHolderLabel.frame.size.width, placeHolderLabel.frame.size.height);
 }
 
--(CGRect) textRectForBounds:(CGRect) bounds{
-    return CGRectOffset(bounds, textFieldInsets.x, textFieldInsets.y);
-}
+
 
 -(CGRect) rectForBorder:(CGFloat)thickness  isFilled:(BOOL)isFilled{
     if(isFilled){
-        return CGRectMake(0, placeHolderLabel.frame.origin.y, self.frame.size.width, self.frame.size.height);
+        return CGRectMake(0, placeHolderLabel.frame.origin.y+ placeHolderLabel.font.lineHeight, self.frame.size.width, self.frame.size.height -(placeHolderLabel.frame.origin.y+ placeHolderLabel.font.lineHeight)  );
     }else{
         return CGRectMake(0, self.frame.size.height-thickness, self.frame.size.width, thickness);
     }
@@ -144,8 +137,7 @@
 
 -(UIFont *) placeholderFontFromFont:(UIFont*) font
 {
-    UIFont *smallerFont = [UIFont fontWithName:font.fontName size:font.pointSize * _placeholderFontScale];
-    return smallerFont;
+    return [UIFont fontWithName:font.fontName size:font.pointSize * _placeholderFontScale];
 }
 
 -(void) animateViewsForTextEntry
@@ -157,10 +149,10 @@
     
     [UIView animateWithDuration:0.2 delay:0.3 usingSpringWithDamping:0.8 initialSpringVelocity:1.0 options:UIViewAnimationOptionBeginFromCurrentState  animations:^(void){
         CGRect frame = placeHolderLabel.frame;
-        frame.origin = CGPointMake(placeholderInsets.x, placeholderInsets.y - placeHolderLabel.bounds.size.height);
+        frame.origin = CGPointMake(placeholderInsets.x, borderLayer.frame.origin.y - placeHolderLabel.bounds.size.height);
         placeHolderLabel.frame = frame;
         
-        borderLayer.frame = [self rectForBorder:_borderThickness isFilled:YES];
+        borderLayer.frame = [self rectForBorder:_borderThickness isFilled:TRUE];
         
     }  completion: nil];
 }
@@ -168,15 +160,22 @@
 -(void) animateViewsForTextDisplay
 {
     NSLog(@"animateViewsForTextDisplay child");
-    if(self.text.length <= 0){
         [UIView animateWithDuration:0.35 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:2.0 options:UIViewAnimationOptionBeginFromCurrentState  animations:^(void){
             [self layoutPlaceholderInTextRect];
             placeHolderLabel.alpha = 1;
             
         }  completion: nil];
-    }
+        borderLayer.frame = [self rectForBorder:_borderThickness isFilled:FALSE];
 }
 
+//OverRides
+-(CGRect)editingRectForBounds:(CGRect)bounds{
+    return CGRectOffset(bounds, textFieldInsets.x, textFieldInsets.y);
+}
+
+-(CGRect) textRectForBounds:(CGRect) bounds{
+    return CGRectOffset(bounds, textFieldInsets.x, textFieldInsets.y);
+}
 
 
 @end

@@ -20,6 +20,7 @@
 		C31E2E6A1C2272FC0043D593 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C31E2E691C2272FC0043D593 /* UIKit.framework */; };
 		C31E2E6D1C2273720043D593 /* TextFieldEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C31E2E6C1C2273720043D593 /* TextFieldEffects.m */; };
 		C31E2E731C22B0130043D593 /* JiraTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C31E2E721C22B0130043D593 /* JiraTextField.m */; };
+		C370539C1C2417C70004ECCC /* YoshikoTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C370539B1C2417C70004ECCC /* YoshikoTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		C31E2E6C1C2273720043D593 /* TextFieldEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEffects.m; sourceTree = "<group>"; };
 		C31E2E711C22B0130043D593 /* JiraTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiraTextField.h; sourceTree = "<group>"; };
 		C31E2E721C22B0130043D593 /* JiraTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiraTextField.m; sourceTree = "<group>"; };
+		C370539A1C2417C70004ECCC /* YoshikoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoshikoTextField.h; sourceTree = "<group>"; };
+		C370539B1C2417C70004ECCC /* YoshikoTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoshikoTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				C31E2E6C1C2273720043D593 /* TextFieldEffects.m */,
 				C31E2E711C22B0130043D593 /* JiraTextField.h */,
 				C31E2E721C22B0130043D593 /* JiraTextField.m */,
+				C370539A1C2417C70004ECCC /* YoshikoTextField.h */,
+				C370539B1C2417C70004ECCC /* YoshikoTextField.m */,
 			);
 			path = CERangeSlider;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 			files = (
 				C31E2E201C21E5DC0043D593 /* ViewController.m in Sources */,
 				C31E2E731C22B0130043D593 /* JiraTextField.m in Sources */,
+				C370539C1C2417C70004ECCC /* YoshikoTextField.m in Sources */,
 				C31E2E1D1C21E5DC0043D593 /* AppDelegate.m in Sources */,
 				C31E2E5F1C2201280043D593 /* CERangeSliderTrackLayer.m in Sources */,
 				C31E2E361C21F2AA0043D593 /* CERangeSliderKnobLayer.m in Sources */,

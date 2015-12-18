@@ -8,18 +8,24 @@
 
 #import "TextFieldEffects.h"
 
+static void* const MyKVOContext = (void *)&MyKVOContext;
+
 @implementation TextFieldEffects {
  
     
 }
 
+@dynamic placeholder;
 @dynamic text;
+@dynamic textColor;
+
+
 
 /*
 -(void) setText:(NSString *)text{
-    self.text = text;
+    //self.text = text;
     NSLog(@"Set Text");
-    //super.text = text;
+    super.text = text;
     if(text==self.text && (text.length >0)){
         [self animateViewsForTextEntry];
     }else{
@@ -27,6 +33,7 @@
     }
 }
  */
+ 
 
 -(void) animateViewsForTextEntry {
      NSLog(@"Supper view animateViewsForTextEntry");
@@ -34,8 +41,6 @@
 -(void) animateViewsForTextDisplay{
     NSLog(@"Supper view animateViewsForTextDisplay");
 }
-
-
 
 -(void) updateViewsForBoundsChange:(CGRect) bounds
 {
@@ -45,6 +50,34 @@
 -(void)drawPlaceholderInRect:(CGRect)rect{
     // Don't draw any placeholders
 }
+
+
+-(void) setupKVO{
+    NSLog(@"Setup KVO called");
+    [self.userActivity addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:MyKVOContext];
+}
+
+-(void) removeKVO{
+    NSLog(@"Remove KVO Called");
+    [self.userActivity removeObserver:self forKeyPath:@"text" context:MyKVOContext];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object change:(NSDictionary *)change
+                       context:(void *)context
+{
+    NSLog(@"Observer root");
+    if ( context == MyKVOContext ) {
+        if ( [object isEqual:self] ) {
+            NSLog(@"Observer called here");
+        }
+    }
+}
+
+-(void) dealloc{
+    [self removeKVO];
+}
+
 
 
 /**
@@ -59,7 +92,10 @@
 -(void) drawRect:(CGRect)rect
 {
     NSLog(@"Super drawRect called");
+    [self setupKVO];
+    
     [self drawViewsForRect: rect];
+    [self animateViewsForTextDisplay];
 }
 
 -(void) willMoveToSuperview:(UIView *)newSuperview

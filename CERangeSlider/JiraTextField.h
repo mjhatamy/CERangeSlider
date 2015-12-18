@@ -9,7 +9,15 @@
 #import "TextFieldEffects.h"
 
 IB_DESIGNABLE
-@interface JiraTextField : TextFieldEffects
+#include <UIKit/UITextField.h>
+@class UITextField;
+@class TextFieldEffects;
+
+@interface JiraTextField : TextFieldEffects {
+    CGPoint placeholderInsets;
+    CGPoint textFieldInsets;
+    CALayer *borderLayer;
+}
 
 @property (nonatomic) IBInspectable CGFloat borderThickness;
 @property (nonatomic) IBInspectable CGFloat placeholderFontScale;
@@ -18,5 +26,7 @@ IB_DESIGNABLE
 
 -(void) animateViewsForTextEntry;
 -(void) animateViewsForTextDisplay;
+
+-(CGRect) textRectForBounds:(CGRect) bounds;
 
 @end
